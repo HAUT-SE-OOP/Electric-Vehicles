@@ -1,13 +1,12 @@
 
-#include "ElectricVehicleStatus.h"
+#include "ElectricVehicle.h"
 int main() {
     try {
-    //ElectricVehicleStatus ee = ElectricVehicleStatus::parser("BMW 120 250 Germany 1 150000 0 2019");
+        ElectricVehicle e{"AUDI",120,250,"Poland","true",15000,2300,2012};
     //ee.info();
-    std::vector<ElectricVehicleStatus> e = ElectricVehicleStatus::readFile("vehicles.txt");
-    for (int i = 0; i < e.size(); ++i) {
-        e[i].info();
-    }
+    e.info();
+    //std::vector<ElectricVehicle> e = ElectricVehicle::readFile();
+    //ElectricVehicle::saveToFile(e);
     }catch(std::runtime_error& error)
     {
         std::cout << error.what() << std::endl;

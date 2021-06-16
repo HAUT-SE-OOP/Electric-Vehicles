@@ -8,7 +8,7 @@ int ElectricVehicleParameters::getHP() const {
     return hp;
 }
 
-double ElectricVehicleParameters::getRange() const {
+int ElectricVehicleParameters::getRange() const {
     return range;
 }
 
@@ -36,7 +36,7 @@ if(range_ < 0 || range_ > 1000)
 this->range = range_;
 }
 
-ElectricVehicleParameters::ElectricVehicleParameters(const std::string &brand_, const int hp_, const double range_) {
+ElectricVehicleParameters::ElectricVehicleParameters(const std::string &brand_, const int hp_, const int range_) {
     setBrand(brand_);
     setHP(hp_);
     setRange(range_);

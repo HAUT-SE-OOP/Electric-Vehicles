@@ -3,14 +3,14 @@ class ElectricVehicleParameters {
 private:
     std::string brand;
     int hp; // horsepower
-    double range; // range of electric vehicle before the need of charging
+    int range; // range of electric vehicle before the need of charging
 public:
-    explicit ElectricVehicleParameters(const std::string& brand_ = "NULL", const int hp_ = 0, const double range_ = 0);
+    explicit ElectricVehicleParameters(const std::string& brand_ = "NULL", const int hp_ = 0, const int range_ = 0);
 
     //getters
     std::string getBrand() const;
     int getHP() const;
-    double getRange() const;
+    int getRange() const;
 
     //setters
     void setBrand(const std::string& brand_);
