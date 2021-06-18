@@ -28,7 +28,7 @@ public:
     static std::vector<ElectricVehicle> readFile();
     //static ElectricVehicle getElectricVehicleFromUser();
     static void saveToFile(const ElectricVehicle& ev);
-    static void sortByAny(std::vector<ElectricVehicle>& ev);
+
 
     void info() const override;
     ~ElectricVehicle() = default;

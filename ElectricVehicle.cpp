@@ -67,12 +67,6 @@ void ElectricVehicle::saveToFile(const ElectricVehicle& ev) {
     file.open("vehicles.txt", std::ios::app);
     if(file.is_open())
     {
-        char notCrashed_ = '0';
-        if(ev.notCrashed)
-        {
-            notCrashed_ = '1';
-        }
-
         file << "\n" << toStr(ev); // using function toStr to convert class object to string so it can be saved to text file
         file.close();
         std::cout << "Saved successfully!" << std::endl;
@@ -81,14 +75,11 @@ void ElectricVehicle::saveToFile(const ElectricVehicle& ev) {
         throw std::runtime_error("Could not open file: vehicles.txt");
 }
 
-void ElectricVehicle::sortByAny(std::vector<ElectricVehicle> &ev) {
-
-}
 
 void ElectricVehicle::set_originCountry(const std::string &originCountry_) {
 if(originCountry_.empty())
 {
-    throw std::runtime_error("Country of origin is incorrect!");
+    throw std::runtime_error("Country of origin '" + originCountry_ + "' is incorrect!");
 }
 this->originCountry = originCountry_;
 }
