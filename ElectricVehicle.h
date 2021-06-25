@@ -24,6 +24,8 @@ public:
     int get_productionYear() const;
     bool get_notCrashed() const;
 
+    // operator == to use for deletion of vehicle
+    bool operator==(const ElectricVehicle& ev);
     void info() const override;
 
     ~ElectricVehicle() = default;

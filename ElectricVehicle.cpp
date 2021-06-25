@@ -81,6 +81,14 @@ int ElectricVehicle::get_productionYear() const {
 bool ElectricVehicle::get_notCrashed() const {
     return notCrashed;
 }
+bool ElectricVehicle::operator==(const ElectricVehicle& ev) {
+    if(this->getBrand() != ev.getBrand() && this->getHP() != ev.getHP() && this->getRange() != ev.getRange() && this-> originCountry != ev.originCountry && this->notCrashed != ev.notCrashed
+    && this->price != ev.price && this-> mileage != ev.mileage && this-> productionYear != ev.productionYear)
+    {
+        return false;
+    }
+    return true;
+}
 
 
 

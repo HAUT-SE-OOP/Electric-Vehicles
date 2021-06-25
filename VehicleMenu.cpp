@@ -73,7 +73,7 @@ void VehicleMenu::sortByAny(const int option) {
             });
             break;
         default:
-            throw std::runtime_error("wrong choice");
+            throw std::runtime_error("Wrong choice!");
     }
 }
 // reading vehicles from file
@@ -94,8 +94,7 @@ std::vector<ElectricVehicle> VehicleMenu::readFile() {
         file.close();
         return vehiclesResult;
     }
-    else
-        throw std::runtime_error("Could not open file: vehicles.txt");
+    else throw std::runtime_error("Could not open file: vehicles.txt");
 }
 
 //saving vehicle to text file
@@ -108,8 +107,38 @@ void VehicleMenu::saveToFile(const ElectricVehicle& ev) {
         file.close();
         std::cout << "Saved successfully!" << std::endl;
     }
+    else throw std::runtime_error("Could not open file: vehicles.txt");
+}
+
+// function to update txt file with new vector of ElectricVehicles if any changes to it happened
+void VehicleMenu::updateFile() {
+    std::ofstream file;
+    file.open("vehicles.txt");
+    if(file.is_open())
+    {
+        for (int i = 0; i < eVehicles.size(); ++i) {
+            file << "\n"<< toStr(eVehicles[i]);
+        }
+        file.close();
+        std::cout << "Updated vehicles successfully!" << std::endl;
+    }
     else
         throw std::runtime_error("Could not open file: vehicles.txt");
+}
+
+// function to delete electric vehicle from txt file if found
+void VehicleMenu::deleteChosenVehicle(const ElectricVehicle &ev) {
+    bool vehicleFound = false;
+    for (int i = 0; i < eVehicles.size(); ++i) {
+        if(eVehicles[i] == ev)
+        {
+            eVehicles.erase(eVehicles.begin() + i);
+            vehicleFound = true;
+            break;
+        }
+    }
+    if(vehicleFound) updateFile();
+    else throw std::runtime_error("Given Electric vehicle was not found!");
 }
 
 void VehicleMenu::info() const {
@@ -120,13 +149,11 @@ void VehicleMenu::info() const {
 }
 
 void VehicleMenu::menu() {
-    std::cout << "=================================== Electric Vehicles Database ===================================" << std::endl;
+    std::cout << "=================================== Electric Vehicles Database ==================================="
+              << std::endl;
     std::cout << "1. Show all vehicles" << std::endl;
     std::cout << "2. Sort vehicles by selected order" << std::endl;
     std::cout << "3. Add vehicle(s) to database" << std::endl;
-
+    std::cout << "4. Remove vehicle from database" << std::endl;
+    //TODO WIP
 }
-
-
-
-
