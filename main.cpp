@@ -18,7 +18,8 @@ int main() {
     std::cout << "wybierz opcje" << std::endl;
     std::cin >> option; std::cin.get();
     vm.sortByAny(option);
-
+    std::cout << "================================================================" << std::endl;
+    vm.info();
 
     }catch(std::runtime_error& error)
     {
