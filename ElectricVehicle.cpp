@@ -8,73 +8,12 @@ ElectricVehicle::ElectricVehicle(const std::string &brand_, const int hp_, const
     set_mileage(mileage_);
     set_productionYear(productionYear_);
 }
-// parsing string to class object using stringstream
-ElectricVehicle ElectricVehicle::parser(const std::string &to_parse) {
-    std::stringstream iss(to_parse);
-    std::string param;
-    std::vector<std::string> params; // temporary vector to hold Vehicle parameters
-    while(iss >> param)
-    {
-        params.emplace_back(param);
-    }
-
-    // returning new object ElectricVehicle initialized with parameters held in vector params
-    return ElectricVehicle(params[0], std::stoi(params[1]), std::stod(params[2]), params[3], params[4],
-                                 std::stod(params[5]),std::stod(params[6]),std::stoi(params[7]));
-}
-
-// converting class object to string
-std::string ElectricVehicle::toStr(const ElectricVehicle &ev) {
-    char notCrashed_ = '0';
-    if(ev.notCrashed)
-    {
-        notCrashed_ = '1';
-    }
-    return ev.getBrand() + " " + std::to_string(ev.getHP()) + " " + std::to_string(ev.getRange()) + " " + ev.originCountry + " "
-    + notCrashed_ + " " + std::to_string(ev.price) + " " + std::to_string(ev.mileage) + " " + std::to_string(ev.productionYear);
-}
 
 void ElectricVehicle::info() const {
-    ElectricVehicleParameters::info(); // using base class logic for function info
-    std::cout << "origin = " << originCountry << " crashed? = " << notCrashed << " price = " << price << " mileage = " << mileage << " production year = " << productionYear << std::endl;
+    ElectricVehicleParameters::info(); // using base class logic for function info and adding additional logic
+    std::cout << "\nCountry of origin = " << originCountry << "\nCrashed = " << std::boolalpha << notCrashed << "\nPrice = " << price << "\nMileage = " << mileage <<
+    "\nProduction year = " << productionYear << "\n" << std::endl;
 }
-
-// reading vehicles from file
-std::vector<ElectricVehicle> ElectricVehicle::readFile() {
-    std::ifstream file;
-    file.open("vehicles.txt");
-    if(file.is_open())
-    {
-        std::string vehicle;
-        std::vector<ElectricVehicle> vehiclesResult;
-        while(!file.eof())
-        {
-            std::getline(file,vehicle); // downloading line of vehicle parameters from text file represented as a string
-            if(!vehicle.empty()) {
-                vehiclesResult.emplace_back(parser(vehicle)); // using previous function 'parser' to convert downloaded string to class object
-            }
-        }
-        file.close();
-        return vehiclesResult;
-    }
-    else
-        throw std::runtime_error("Could not open file: vehicles.txt");
-}
-
-//saving vehicle to text file
-void ElectricVehicle::saveToFile(const ElectricVehicle& ev) {
-    std::ofstream file;
-    file.open("vehicles.txt", std::ios::app);
-    if(file.is_open())
-    {
-        file << "\n" << toStr(ev); // using function toStr to convert class object to string so it can be saved to text file
-        file.close();
-        std::cout << "Saved successfully!" << std::endl;
-    }
-    else
-        throw std::runtime_error("Could not open file: vehicles.txt");
-}
-
 
 void ElectricVehicle::set_originCountry(const std::string &originCountry_) {
 if(originCountry_.empty())
@@ -87,7 +26,7 @@ this->originCountry = originCountry_;
 void ElectricVehicle::set_notCrashed(const std::string& notCrashed_) {
 if(notCrashed_ != "true" && notCrashed_ != "false")
 {
-    throw std::runtime_error("'Is car crashed?' condition is incorrect!");
+    throw std::runtime_error("'Is vehicle crashed?' condition is incorrect!");
 }
 if(notCrashed_ == "true")
 {
@@ -137,6 +76,10 @@ int ElectricVehicle::get_mileage() const {
 
 int ElectricVehicle::get_productionYear() const {
     return productionYear;
+}
+
+bool ElectricVehicle::get_notCrashed() const {
+    return notCrashed;
 }
 
 

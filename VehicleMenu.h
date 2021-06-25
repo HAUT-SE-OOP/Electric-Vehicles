@@ -2,12 +2,17 @@
 class VehicleMenu : public ElectricVehicle{
 private:
     std::vector<ElectricVehicle> eVehicles;
-public:
     void sortByAny(const int option); // function to sort vector of electric vehicles by the variable chosen by user
-    /*explicit VehicleMenu(const std::string& brand_ = "", const int hp_ = 0, const int range_ = 0, const std::string& originCountry_ = ""
-            ,std::string notCrashed_ = "true", const int price_ = 0, const int mileage_ = 0, const int productionYear_ = 0, const std::vector<ElectricVehicle>& ev = {})
-            : ElectricVehicle(brand_,hp_,range_,originCountry_,notCrashed_,price_,mileage_,productionYear_), eVehicles(ev){}*/
-    explicit VehicleMenu(const std::vector<ElectricVehicle>& eVehicles_);
-    void info() const;
+    static ElectricVehicle parser(const std::string& to_parse); // function to convert class object to string
+    static std::string toStr(const ElectricVehicle& ev); // function to convert string to class object
+public:
+    explicit VehicleMenu(const std::vector<ElectricVehicle>& eVehicles_) : eVehicles(eVehicles_){}
+
+    // save and read from text file functions
+    static std::vector<ElectricVehicle> readFile();
+    static void saveToFile(const ElectricVehicle& ev);
+
+    void menu();
+    void info() const override;
 };
 

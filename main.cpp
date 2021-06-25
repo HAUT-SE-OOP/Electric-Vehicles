@@ -13,13 +13,13 @@ int main() {
 
     VehicleMenu vm{ev};
 
-    int option;
+    //int option;
     vm.info();
-    std::cout << "wybierz opcje" << std::endl;
-    std::cin >> option; std::cin.get();
-    vm.sortByAny(option);
+    //std::cout << "wybierz opcje" << std::endl;
+    //std::cin >> option; std::cin.get();
+    //vm.sortByAny(option);
     std::cout << "================================================================" << std::endl;
-    vm.info();
+   // vm.info();
 
     }catch(std::runtime_error& error)
     {

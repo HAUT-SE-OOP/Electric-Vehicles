@@ -43,5 +43,5 @@ ElectricVehicleParameters::ElectricVehicleParameters(const std::string &brand_, 
 }
 
 void ElectricVehicleParameters::info() const {
-    std::cout << "Brand = " << getBrand() << " horsepower = " << getHP() << " range = " << getRange() << std::endl;
+    std::cout << "Brand = " << getBrand() << "\nHorsepower = " << getHP() << " \nRange = " << getRange();
 }
