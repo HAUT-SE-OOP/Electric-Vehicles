@@ -90,6 +90,28 @@ bool ElectricVehicle::operator==(const ElectricVehicle& ev) {
     return true;
 }
 
+ElectricVehicle ElectricVehicle::createEV() {
+    int horsepower_, range_, price_, mileage_, productionYear_;
+    std::string originCountry_, notCrashed_, brand_;
+    std::cout << "Brand name: " << std::endl;
+    std::getline(std::cin, brand_);
+    std::cout << "Horsepower: " << std::endl;
+    std::cin >> horsepower_; std::cin.get();
+    std::cout << "Range: " << std::endl;
+    std::cin >> range_; std::cin.get();
+    std::cout << "Country of origin: " << std::endl;
+    std::getline(std::cin, originCountry_);
+    std::cout << "Is the vehicle crashed? (true/false): " << std::endl;
+    std::cin >> notCrashed_; std::cin.get();
+    std::cout << "Price: " << std::endl;
+    std::cin >> price_; std::cin.get();
+    std::cout << "Mileage: " << std::endl;
+    std::cin >> mileage_; std::cin.get();
+    std::cout << "Production year: " << std::endl;
+    std::cin >> productionYear_; std::cin.get();
+    return ElectricVehicle(brand_,horsepower_,range_,originCountry_,notCrashed_,price_,mileage_,productionYear_);
+}
+
 
 
 

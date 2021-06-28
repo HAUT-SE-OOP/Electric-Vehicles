@@ -62,9 +62,9 @@ void VehicleMenu::sortByAny(const int option) {
                 return ev1.get_price() > ev2.get_price();                                  // comparing price value
             });
             break;
-        case 6: // sorting by mileage
+        case 6: // sorting by mileage ascending
             std::sort(eVehicles.begin(), eVehicles.end(), [](const ElectricVehicle& ev1, const ElectricVehicle& ev2)  -> bool{
-                return ev1.get_mileage() > ev2.get_mileage();                               // comparing mileage value
+                return ev1.get_mileage() < ev2.get_mileage();                               // comparing mileage value
             });
             break;
         case 7: // sorting by production year
@@ -138,7 +138,7 @@ void VehicleMenu::deleteChosenVehicle(const ElectricVehicle &ev) {
         }
     }
     if(vehicleFound) updateFile();
-    else throw std::runtime_error("Given Electric vehicle was not found!");
+    else throw std::runtime_error("Given electric vehicle was not found!");
 }
 
 void VehicleMenu::info() const {
@@ -149,11 +149,45 @@ void VehicleMenu::info() const {
 }
 
 void VehicleMenu::menu() {
-    std::cout << "=================================== Electric Vehicles Database ==================================="
-              << std::endl;
-    std::cout << "1. Show all vehicles" << std::endl;
-    std::cout << "2. Sort vehicles by selected order" << std::endl;
-    std::cout << "3. Add vehicle(s) to database" << std::endl;
-    std::cout << "4. Remove vehicle from database" << std::endl;
-    //TODO WIP
+    std::cout << "=================================== Electric Vehicles Database ===================================" << std::endl;
+
+    int option;
+    do {
+        std::cout << "1. Show all vehicles" << std::endl;
+        std::cout << "2. Sort vehicles by selected order" << std::endl;
+        std::cout << "3. Add vehicle(s) to database" << std::endl;
+        std::cout << "4. Remove vehicle from database" << std::endl;
+        std::cout << "5. Exit" << std::endl;
+        std::cin >> option; std::cin.get();
+        switch(option)
+        {
+            case 1:
+                info();
+                break;
+            case 2:
+                int sortingOption;
+                std::cout << "Sort by:" << "\n1. brand name" << "\n2. horsepower" << "\n3. range" << "\n4. country of origin" << "\n5. price"
+                << "\n6. mileage" << "\n7. production year" << "\n";
+                std::cin >> sortingOption; std::cin.get();
+                sortByAny(sortingOption);
+                break;
+            case 3:
+                std::cout << "Enter vehicle data below: " << std::endl;
+                eVehicles.emplace_back(createEV());
+                updateFile();
+                break;
+            case 4:
+                std::cout << "Enter vehicle data below: " << std::endl;
+                deleteChosenVehicle(createEV());
+                break;
+            case 5:
+                std::cout << "exited!" << std::endl;
+                break;
+            default:
+                std::cout << "Wrong choice!" << std::endl;
+                break;
+        }
+
+    } while (option != 5);
+
 }

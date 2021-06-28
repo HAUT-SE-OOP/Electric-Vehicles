@@ -24,10 +24,10 @@ public:
     int get_productionYear() const;
     bool get_notCrashed() const;
 
-    // operator == to use for deletion of vehicle
+    // operator == to use for deletion of vehicle in deriative class
     bool operator==(const ElectricVehicle& ev);
     void info() const override;
-
+    static ElectricVehicle createEV();
     ~ElectricVehicle() = default;
 };
 

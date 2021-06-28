@@ -14,7 +14,6 @@ private:
     void updateFile();
 public:
     explicit VehicleMenu() : eVehicles(readFile()){}
-
     void menu();
     void info() const override;
 };
