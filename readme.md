@@ -1,6 +1,6 @@
-###Electric vehicles database 
+### Electric vehicles database 
 
-####C++ program that allows users to use a database for electric vehicles. Project made for Silesian University of Technology.
+#### C++ program that allows users to use a database for electric vehicles. Project made for Silesian University of Technology.
 
 Currently, this program let users:
 
