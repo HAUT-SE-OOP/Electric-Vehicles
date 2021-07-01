@@ -11,3 +11,4 @@ Currently, this program let users:
 
 
 Program has a basic console GUI to make it easier for the users to use its functionality.
+As this is a University project, I had to use getters and setters, which I wouldn't use otherwise.
