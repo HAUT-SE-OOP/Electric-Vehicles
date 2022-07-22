@@ -1,4 +1,4 @@
-### Electric vehicles database
+### New Energy Vehicles Database
 
 #### C++ program that allows users to use a database for electric vehicles. Project made for Silesian University of Technology.
 
